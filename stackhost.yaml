@@ -8,15 +8,16 @@ python_version: "3.10"
 commands:
   build:
     - "pip install -r requirements.txt"
-    - "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"
-    - "apt-get install -y nodejs"
-    - "ln -s $(which node) /app/nodejs/bin/node"  # Fix Node.js path
+    - "sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -"  # Use sudo for Node.js setup
+    - "sudo apt-get install -y nodejs"
+    - "sudo ln -s $(which node) /app/nodejs/bin/node"  # Ensure Node.js is linked correctly
 
   package:
     - "nano inxi"
 
   start:
-    - "python3 -m AnonXMusic"
+    - "export PATH=$PATH:/usr/local/bin:/usr/bin:/app/nodejs/bin"  # Fix path issues
+    - "sudo python3 -m AnonXMusic"  # Run bot as root to avoid permission errors
 
 env:
   - "ENVIRONMENT=production"
