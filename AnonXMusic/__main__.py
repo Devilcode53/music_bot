@@ -22,7 +22,7 @@ def install_node():
     else:
         print("⚠️ Node.js not found. Installing locally in /app/nodejs...")
         os.system("mkdir -p /app/nodejs")
-        os.system("curl -fsSL https://deb.nodesource.com/setup_16.x | bash -")
+        os.system("curl -fsSL https://deb.nodesource.com/setup_20.x | bash -")
         os.system("apt-get install -y nodejs")
         os.system(f"ln -s $(which node) {node_path}")  # Create symlink to expected path
         os.system(f"{node_path} --version")  # Verify installation
