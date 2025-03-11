@@ -7,13 +7,13 @@ from pyrogram import filters
 load_dotenv()
 
 
-API_ID = 
-API_HASH = ""
-BOT_TOKEN = ""
-MONGO_DB_URI = ""
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 60))
-LOGGER_ID = 
-OWNER_ID = 
+API_ID = 21435734
+API_HASH = "50602c02f9f531b703b21d3c9765820f"
+BOT_TOKEN = "7707500389:AAH8QHvi83cObQGCoMNV3XXXk2T-9N4Lv1c"
+MONGO_DB_URI = "mongodb+srv://Japusahu:Japusahu@japu.20mge.mongodb.net/?retryWrites=true&w=majority&appName=Japu"
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 180))
+LOGGER_ID = -1002385680673
+OWNER_ID = 7526005252
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
@@ -30,11 +30,11 @@ GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # Fill this variable if your upstream repository is private
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/FallenAssociation")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/DevilsHeavenMF")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/+ivKcl1BRLpwxMjY1")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/+eBHWW1mTPHQ5ZmE9")
 
 # Set this to True if you want the assistant to automatically leave chats after an interval
-AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", False))
+AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", True))
 
 
 # Get this credentials from https://developer.spotify.com/dashboard
@@ -53,7 +53,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 1073741824))
 
 
 # Get your pyrogram v2 session from @StringFatherBot on Telegram
-STRING1 = ""
+STRING1 = "BQFHFVYAqlWdMQoQ-9kw9H8AHNskQ1PuIKWWpEw1-5QX5KNp-43obAHm3O4w3voJiZE1V1mxpio9le1groY0-y7iTccWeh5xI6W6KYyHVTyTCufTk3TniiAw4Nc77kipyDFQBGoCBkZSh-4CEsOsbTKu-6hrNKOi3mzgKHl1gKSN0jAi6_pWpLSyAlQmsJXxddVUBMuMKgGzD_u3EdDx9gzg4EzR3rtYuW9ynbi543TLLGxNQFNzHhqxW23ltj5bNwNZuUQlMhn3oTWooI7Fbl4jNJ4JkmxEZSWipQkmaj8S9Qk3nbPctfLeHWSduutaTvvfDlcgoTkUNMBFbXFw3frEjSXsYAAAAAHi0wj4AA"
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
@@ -69,12 +69,12 @@ confirmer = {}
 
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://te.legra.ph/file/25efe6aa029c6baea73ea.jpg"
+    "START_IMG_URL", "https://graph.org/file/ae70cde12942297e2e831-67fe4183def6493417.jpg"
 )
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://te.legra.ph/file/b8a0c1a00db3e57522b53.jpg"
+    "PING_IMG_URL", "https://graph.org/file/6a912b9a041938aa647a6-1072f949d28dadec76.jpg"
 )
-PLAYLIST_IMG_URL = "https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg"
+PLAYLIST_IMG_URL = "https://graph.org/file/e46ff6bfeb4c80a2d3f23-92eaee347cb8fd2bb7.jpg"
 STATS_IMG_URL = "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
 TELEGRAM_AUDIO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
 TELEGRAM_VIDEO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
