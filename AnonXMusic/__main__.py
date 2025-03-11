@@ -12,6 +12,21 @@ from AnonXMusic.plugins import ALL_MODULES
 from AnonXMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
+import os
+import subprocess
+
+def install_node():
+    try:
+        # Check if Node.js is installed
+        result = subprocess.run(["node", "--version"], capture_output=True, text=True, check=True)
+        print(f"✅ Node.js is already installed: {result.stdout.strip()}")
+    except FileNotFoundError:
+        print("⚠️ Node.js not found. Installing locally...")
+        os.system("curl -fsSL https://deb.nodesource.com/setup_16.x | bash -")
+        os.system("apt-get install -y nodejs")
+        os.system("node --version")  # Verify installation
+
+install_node()  # Call the function to check/install Node.js
 
 async def init():
     if (
