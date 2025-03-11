@@ -12,13 +12,11 @@ commands:
     - "apt-get install -y nodejs"
     - "mkdir -p /app/nodejs/bin"  # Ensure directory exists
     - "ln -sf $(which node) /app/nodejs/bin/node"  # Symlink Node.js
+    - "echo 'export PATH=$PATH:/app/nodejs/bin' >> /etc/profile"  # Set PATH globally
     - "touch stackhost.log"  # Create the missing log file
 
   start:
-    - "touch stackhost.log"  # Ensure the log file exists
-    - "export PATH=$PATH:/app/nodejs/bin && exec python3 -m AnonXMusic"
+    - "source /etc/profile && exec python3 -m AnonXMusic"
 
 env:
   - "ENVIRONMENT=production"
-
-
