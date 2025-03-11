@@ -7,15 +7,14 @@ python_version: "3.10"
 
 commands:
   build:
-    - "apt-get update && apt-get install -y curl"
-    - "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"
-    - "apt-get install -y nodejs"
-    - "ln -sf $(which node) /usr/local/bin/node"  # ✅ Ensure Node.js is accessible
-    - "pip install --upgrade pip"  # ✅ Upgrade pip to avoid issues
-    - "pip install --no-cache-dir -r requirements.txt"  # ✅ Ensure clean install
-  
+    - "apt-get update && apt-get install -y curl"  # ✅ Update system packages
+    - "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"  # ✅ Prepare for Node.js
+    - "apt-get install -y nodejs"  # ✅ Install Node.js
+    # - "pip install --upgrade pip setuptools wheel"  # ✅ Upgrade pip to avoid broken installs
+    - "pip install -r requirements.txt"  # ✅ Force a fresh install of dependencies
+
   start:
-    - "python3 -m AnonXMusic"
+    - "python3 -m AnonXMusic"  # ✅ Start the bot normally
 
 env:
   - "ENVIRONMENT=production"
