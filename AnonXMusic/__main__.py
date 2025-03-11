@@ -16,17 +16,18 @@ import os
 import subprocess
 
 def install_node():
-    try:
-        # Check if Node.js is installed
-        result = subprocess.run(["node", "--version"], capture_output=True, text=True, check=True)
-        print(f"✅ Node.js is already installed: {result.stdout.strip()}")
-    except FileNotFoundError:
-        print("⚠️ Node.js not found. Installing locally...")
+    node_path = "/app/nodejs/bin/node"
+    if os.path.exists(node_path):
+        print(f"✅ Node.js is already installed: {node_path}")
+    else:
+        print("⚠️ Node.js not found. Installing locally in /app/nodejs...")
+        os.system("mkdir -p /app/nodejs")
         os.system("curl -fsSL https://deb.nodesource.com/setup_16.x | bash -")
         os.system("apt-get install -y nodejs")
-        os.system("node --version")  # Verify installation
+        os.system(f"ln -s $(which node) {node_path}")  # Create symlink to expected path
+        os.system(f"{node_path} --version")  # Verify installation
 
-install_node()  # Call function before bot starts
+install_node()  # Install Node.js before starting the bot
 
 
 
