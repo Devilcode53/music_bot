@@ -2,16 +2,16 @@ user:
   name: Japu
   github: Japu-Sahu
 
-language: "python"
+language: "javascript"
+package_manager: "npm"
+
 python_version: "3.10"
 
 commands:
   build:
+    - "npm install -g node@16"  # Install Node.js 16.x globally
+    - "node --version"  # Print Node.js version for debugging
     - "pip install -r requirements.txt"
-    - "curl -fsSL https://deb.nodesource.com/setup_16.x | bash -"
-    - "apt-get install -y nodejs"
-  package:
-    - "nano inxi"
   start:
     - "python3 -m AnonXMusic"
 
