@@ -13,11 +13,10 @@ from AnonXMusic.plugins import ALL_MODULES
 from AnonXMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
-# Ensure Node.js is available
+# ✅ Check Node.js availability without forcing exit
 def check_node():
     if os.system("node --version") != 0:
-        LOGGER(__name__).error("❌ Node.js is not installed. Please install it before running the bot.")
-        exit(1)
+        LOGGER(__name__).warning("⚠️ Node.js is not installed. Some features may not work properly.")
 
 check_node()  # Run check at startup
 
