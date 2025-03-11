@@ -7,14 +7,9 @@ python_version: "3.10"
 
 commands:
   build:
-    - "apt-get update && apt-get install -y curl"
-    - "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"
-    - "apt-get install -y nodejs"
-    - "mkdir -p /app/nodejs/bin"
-    - "ln -sf $(which node) /app/nodejs/bin/node"
-    - "pip install --upgrade pip setuptools wheel"
-    - "pip install --no-cache-dir -r requirements.txt"  # ✅ Forces fresh installation
-
+    - "pip install -r requirements.txt"
+  package:
+    - "nano inxi"
   start:
     - "python3 -m AnonXMusic"
 
