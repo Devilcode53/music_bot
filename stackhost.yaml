@@ -7,10 +7,14 @@ python_version: "3.10"
 
 commands:
   build:
+    - "mkdir -p $HOME/nodejs"
+    - "curl -fsSL https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-x64.tar.xz | tar -xJ -C $HOME/nodejs --strip-components=1"
+    - "export PATH=$HOME/nodejs/bin:$PATH"
+    - "node --version"
     - "pip install -r requirements.txt"
-  package:
-    - "nano inxi"
+
   start:
+    - "export PATH=$HOME/nodejs/bin:$PATH"
     - "python3 -m AnonXMusic"
 
 env:
