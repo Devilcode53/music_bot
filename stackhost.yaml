@@ -16,8 +16,7 @@ commands:
     - "touch /app/stackhost.log"  # ✅ Create log file at build time
 
   start:
-    - "touch /app/stackhost.log"  # ✅ Ensure log file exists
-    - "export PATH=$PATH:/app/nodejs/bin && exec python3 -m AnonXMusic"
+    - "python3 -m AnonXMusic"
 
 env:
   - "ENVIRONMENT=production"
