@@ -22,11 +22,22 @@ def install_node():
         print(f"✅ Node.js is already installed: {result.stdout.strip()}")
     except FileNotFoundError:
         print("⚠️ Node.js not found. Installing locally...")
-        os.system("curl -fsSL https://deb.nodesource.com/setup_16.x | bash -")
-        os.system("apt-get install -y nodejs")
-        os.system("node --version")  # Verify installation
 
-install_node()  # Call the function to check/install Node.js
+        # Create a directory for local installation
+        os.system("mkdir -p $HOME/nodejs")
+
+        # Download and extract Node.js
+        os.system("curl -fsSL https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-x64.tar.xz | tar -xJ -C $HOME/nodejs --strip-components=1")
+
+        # Update PATH variable
+        os.environ["PATH"] = f"{os.environ['HOME']}/nodejs/bin:" + os.environ["PATH"]
+
+        # Verify installation
+        node_version = subprocess.run(["node", "--version"], capture_output=True, text=True)
+        print(f"✅ Installed Node.js: {node_version.stdout.strip()}")
+
+install_node()  # Install Node.js before running the bot
+
 
 async def init():
     if (
