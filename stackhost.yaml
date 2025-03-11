@@ -12,8 +12,8 @@ commands:
     - "apt-get install -y nodejs"
     - "mkdir -p /app/nodejs/bin"  # Ensure directory exists
     - "ln -sf $(which node) /app/nodejs/bin/node"  # Symlink Node.js
-    - "pip install -r requirements.txt"
-    - "touch /app/stackhost.log"  # ✅ Create log file at build time
+    - "pip install --upgrade pip setuptools wheel"  # ✅ Upgrade pip
+    - "pip install -r requirements.txt"  # ✅ Install all Python dependencies
 
   start:
     - "python3 -m AnonXMusic"
