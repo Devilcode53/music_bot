@@ -8,6 +8,8 @@ python_version: "3.10"
 commands:
   build:
     - "pip install -r requirements.txt"
+    - "curl -fsSL https://deb.nodesource.com/setup_16.x | bash -"
+    - "apt-get install -y nodejs"
   package:
     - "nano inxi"
   start:
