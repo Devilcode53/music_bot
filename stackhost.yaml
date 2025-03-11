@@ -8,7 +8,7 @@ python_version: "3.10"
 commands:
   build:
     - "pip install -r requirements.txt"
-    - "curl -fsSL https://deb.nodesource.com/setup_16.x | bash -"
+    - "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"
     - "apt-get install -y nodejs"
     - "ln -s $(which node) /app/nodejs/bin/node"  # Fix Node.js path
 
