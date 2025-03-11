@@ -32,8 +32,10 @@ class YouTubeAPI:
         self.base = "https://www.youtube.com/watch?v="
         self.regex = r"(?:youtube\.com|youtu\.be)"
         self.status = "https://www.youtube.com/oembed?url="
-        self.listbase = "https0-?]*[ -/]*[@-~])")
-        self.cookies_file = os.path.join(os.path.dirname(__file__), "cookies.txt")
+        self.listbase = "https://www.youtube.com/playlist?list="
+        # Define the path to cookies file - adjust this according to your actual file structure
+        # Assuming cookies.txt is in the same directory as youtube.py
+        self.cookies_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cookies.txt")
 
     async def exists(self, link: str, videoid: Union[bool, str] = None):
         if videoid:
@@ -124,6 +126,8 @@ class YouTubeAPI:
             "-g",
             "-f",
             "best[height<=?720][width<=?1280]",
+            "--cookies",
+            self.cookies_file,  # Add cookies file
             f"{link}",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
@@ -140,7 +144,7 @@ class YouTubeAPI:
         if "&" in link:
             link = link.split("&")[0]
         playlist = await shell_cmd(
-            f"yt-dlp -i --get-id --flat-playlist --playlist-end {limit} --skip-download {link}"
+            f"yt-dlp -i --get-id --flat-playlist --playlist-end {limit} --skip-download --cookies {self.cookies_file} {link}"
         )
         try:
             result = playlist.split("\n")
@@ -177,7 +181,10 @@ class YouTubeAPI:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        ytdl_opts = {"quiet": True}
+        ytdl_opts = {
+            "quiet": True,
+            "cookiefile": self.cookies_file,  # Add cookies file
+        }
         ydl = yt_dlp.YoutubeDL(ytdl_opts)
         with ydl:
             formats_available = []
@@ -249,7 +256,7 @@ class YouTubeAPI:
                 "nocheckcertificate": True,
                 "quiet": True,
                 "no_warnings": True,
-                "cookiefile": self.cookies_file,
+                "cookiefile": self.cookies_file,  # Add cookies file
             }
             x = yt_dlp.YoutubeDL(ydl_optssx)
             info = x.extract_info(link, False)
@@ -267,7 +274,7 @@ class YouTubeAPI:
                 "nocheckcertificate": True,
                 "quiet": True,
                 "no_warnings": True,
-                "cookiefile": self.cookies_file,
+                "cookiefile": self.cookies_file,  # Add cookies file
             }
             x = yt_dlp.YoutubeDL(ydl_optssx)
             info = x.extract_info(link, False)
@@ -289,7 +296,7 @@ class YouTubeAPI:
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
                 "merge_output_format": "mp4",
-                "cookiefile": self.cookies_file,
+                "cookiefile": self.cookies_file,  # Add cookies file
             }
             x = yt_dlp.YoutubeDL(ydl_optssx)
             x.download([link])
@@ -304,7 +311,7 @@ class YouTubeAPI:
                 "quiet": True,
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
-                "cookiefile": self.cookies_file,
+                "cookiefile": self.cookies_file,  # Add cookies file
                 "postprocessors": [
                     {
                         "key": "FFmpegExtractAudio",
@@ -334,7 +341,8 @@ class YouTubeAPI:
                     "-g",
                     "-f",
                     "best[height<=?720][width<=?1280]",
-                    "--cookies", self.cookies_file,
+                    "--cookies",
+                    self.cookies_file,  # Add cookies file
                     f"{link}",
                     stdout=asyncio.subprocess.PIPE,
                     stderr=asyncio.subprocess.PIPE,
