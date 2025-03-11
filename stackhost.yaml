@@ -7,12 +7,13 @@ python_version: "3.10"
 
 commands:
   build:
+    - "pip install --upgrade pip setuptools wheel"  # ✅ Upgrade pip first
+    - "pip install -r requirements.txt"  # ✅ Install Python dependencies first
     - "apt-get update && apt-get install -y curl"  # ✅ Update system packages
     - "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"  # ✅ Prepare for Node.js
-    - "apt-get install -y nodejs"  # ✅ Install Node.js
-    # - "pip install --upgrade pip setuptools wheel"  # ✅ Upgrade pip to avoid broken installs
-    - "pip install -r requirements.txt"  # ✅ Force a fresh install of dependencies
-
+    - "apt-get install -y nodejs"  # ✅ Install Node.js after Python dependencies
+  package:
+    - "nano inxi"
   start:
     - "python3 -m AnonXMusic"  # ✅ Start the bot normally
 
