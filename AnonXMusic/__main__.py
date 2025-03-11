@@ -13,21 +13,17 @@ from AnonXMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
 import os
-import subprocess
 
 def install_node():
-    node_path = "/app/nodejs/bin/node"
-    if os.path.exists(node_path):
-        print(f"✅ Node.js is already installed: {node_path}")
-    else:
-        print("⚠️ Node.js not found. Installing locally in /app/nodejs...")
-        os.system("mkdir -p /app/nodejs")
-        os.system("curl -fsSL https://deb.nodesource.com/setup_20.x | bash -")
-        os.system("apt-get install -y nodejs")
-        os.system(f"ln -s $(which node) {node_path}")  # Create symlink to expected path
-        os.system(f"{node_path} --version")  # Verify installation
+    print("⚠️ Checking Node.js installation...")
+    if os.system("node --version") != 0:  # If Node.js is not found
+        print("⚠️ Node.js not found. Installing...")
+        os.system("sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -")  # Node.js 20 (LTS)
+        os.system("sudo apt-get install -y nodejs")  # Use sudo
+        os.system("export PATH=$PATH:/usr/local/bin:/app/nodejs/bin")  # Set path
+        os.system("node --version")  # Verify installation
+install_node()
 
-install_node()  # Install Node.js before starting the bot
 
 
 
