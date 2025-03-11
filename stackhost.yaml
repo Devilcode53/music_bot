@@ -11,7 +11,7 @@ commands:
   package:
     - "nano inxi"
   start:
-    - "python3 AnonXMusic/core/bot.py"
+    - "python3 main.py"
 
 env:
   - "ENVIRONMENT=production"
