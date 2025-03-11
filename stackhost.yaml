@@ -7,16 +7,15 @@ python_version: "3.10"
 
 commands:
   build:
-    - "pip install -r requirements.txt"
-    - "sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -"
-    - "sudo apt-get install -y nodejs"
-    - "sudo ln -s $(which node) /app/nodejs/bin/node"  # Ensure Node.js is linked correctly
-
-  package:
-    - "nano inxi"
+    - "apt-get update && apt-get install -y curl"
+    - "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"
+    - "apt-get install -y nodejs"
+    - "mkdir -p /app/nodejs/bin"  # Ensure directory exists
+    - "ln -sf $(which node) /app/nodejs/bin/node"  # Symlink Node.js
 
   start:
-    - "env PATH=$PATH:/usr/local/bin:/usr/bin:/app/nodejs/bin python3 -m AnonXMusic"  # Fix PATH without nohup
+    - "export PATH=$PATH:/app/nodejs/bin && exec python3 -m AnonXMusic"
 
 env:
   - "ENVIRONMENT=production"
+
