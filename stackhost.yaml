@@ -9,10 +9,13 @@ python_version: "3.10"
 
 commands:
   build:
-    - "npm install -g node@16"  # Install Node.js 16.x globally
+    - "npm config set prefix $HOME/.npm-global"  # Set local install directory
+    - "export PATH=$HOME/.npm-global/bin:$PATH"  # Add local bin to PATH
+    - "npm install --prefix=$HOME/.npm-global node@16"  # Install Node.js locally
     - "node --version"  # Print Node.js version for debugging
     - "pip install -r requirements.txt"
   start:
+    - "export PATH=$HOME/.npm-global/bin:$PATH"  # Ensure Node.js is available
     - "python3 -m AnonXMusic"
 
 env:
